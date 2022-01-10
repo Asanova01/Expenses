@@ -30,6 +30,7 @@ function App() {
 
 	return (
 		<div className='App'>
+			<div>Created homework</div>
 			<Expenses data={expenses} />
 		</div>
 	)
