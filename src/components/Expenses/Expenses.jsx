@@ -21,7 +21,6 @@ function Expenses(props) {
 		})}
 		</Card>
 	)
-
 }
 	// return (
 	// 	<div className='expenses'>
