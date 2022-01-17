@@ -1,8 +1,11 @@
 import ExpenseDate from './ExpenseDate'
 import './ExpenseItem.css'
 
+
 function ExpenseItem(props) {
 	//props не меняется
+	// console.log(useState('some value'));
+
 	const expenseTitle = props.title
 	const expenseAmount = props.amount
 
