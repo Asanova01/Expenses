@@ -11,7 +11,7 @@ function Expenses(props) {
 					<ExpenseItem
 						key={element.id}
 						title={element.title}
-						amout={element.amount}
+						amount={element.amount}
 						date={element.date}
 					/>
 				)

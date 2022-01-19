@@ -1,73 +1,33 @@
 import './ExpenseForm.css'
 import { useState } from 'react'
 
-const ExpenseFrom = () => {
-	// const [title, setTitle] = useState('')
-	// const [amount, setAmount] = useState('')
-	// const [date, setDate] = useState('')
-
-	const [userInput, setUserInput] = useState({
-		title: '',
-		//to many times amount changed
-		amount: '',
-		date: '',
-	})
-
-	//-----------------VERSION 1
-
-	// const inputChangeHadler = (event) => {
-	//     const currenInput = event.target.name
-	//     if(currenInput=== 'title'){
-	//         setTitle(event.target.value)
-	//     }else if (currenInput === 'amount'){
-	//         setAmount(event.target.value)
-	//     }else if(currenInput==='date'){
-	//         setDate(event.target.value)
-	//     }
-	// }
-
-	//----------------VERSION 2
-
-	// const inputChangeHadler = (event) => {
-	// 	const currenInput = event.target.name
-	//     setUserInput({
-	//         ...userInput,
-	//         [currenInput] : event.target.value
-	//     })
-	// }
+const ExpenseFrom = (props) => {
+	const [title, setTitle] = useState('')
+	const [amount, setAmount] = useState('')
+	const [date, setDate] = useState('')
 
 	const titleChangeHandler = (event) => {
-		// setUserInput({
-		// 	...userInput,
-		// 	title: event.target.value,
-		// })
-		setUserInput((prevState) => {
-			return {
-				...prevState,
-				title: event.target.value,
-			}
-		})
+		setTitle(event.target.value)
 	}
+
 	const amountChangeHandler = (event) => {
-		setUserInput({
-			...userInput,
-			amount: event.target.value,
-		})
+		setAmount(event.target.value)
 	}
+
 	const dateChangeHandler = (event) => {
-		setUserInput({
-			...userInput,
-			date: event.target.value,
-		})
+		setDate(event.target.value)
 	}
 
 	const submitHandler = (event) => {
 		event.preventDefault()
-		console.log(userInput)
-		// console.log(title)
-		// console.log(amount)
-		// console.log(date)
+		const expenseData = {
+			title: title,
+			amount: amount,
+			date: new Date(date),
+		}
+		props.onSaveExpenseData(expenseData)
 	}
+
 	return (
 		<form onSubmit={submitHandler}>
 			<div className='new-expense__controls'>
@@ -76,7 +36,8 @@ const ExpenseFrom = () => {
 					<input
 						name='title'
 						type='text'
-						onChange={titleChangeHandler}
+						onChange={titleChangeHandler} //берет
+						value={title} //высвечивает
 					/>
 				</div>
 				<div className='new-expense__control'>
@@ -86,6 +47,7 @@ const ExpenseFrom = () => {
 						type='number'
 						min='0.1'
 						step='1'
+						value={amount}
 						onChange={amountChangeHandler}
 					/>
 				</div>
@@ -95,6 +57,7 @@ const ExpenseFrom = () => {
 						name='date'
 						type='date'
 						min='2022-01-01'
+						value={date}
 						onChange={dateChangeHandler}
 					/>
 				</div>
