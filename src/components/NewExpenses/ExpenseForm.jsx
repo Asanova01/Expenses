@@ -2,12 +2,12 @@ import './ExpenseForm.css'
 import { useState } from 'react'
 
 const ExpenseFrom = (props) => {
-	const [title, setTitle] = useState('')
+	const [title, setTitle] = useState('') // 3 состояние для 3 инпутов
 	const [amount, setAmount] = useState('')
 	const [date, setDate] = useState('')
 
-	const inputChangeHandler = (e) => {
-		const currentInput = e.target.name
+	const inputChangeHandler = (e) => { // чтобы получить данные, нам нужен обработчик. Он возвращает event, а он приходит от onChange
+		const currentInput = e.target.name //доступ к name
 		if (currentInput === 'title') {
 			setTitle(e.target.value)
 		} else if (currentInput === 'amount') {
@@ -18,13 +18,13 @@ const ExpenseFrom = (props) => {
 	}
 
 	const submitHandler = (e) => {
-		e.preventDefault()
-		const currentInput = {
+		e.preventDefault()                //отменяет действие браузера
+		const currentInput = {            
 			title,
 			amount,
 			date: new Date(date),
 		}
-		props.onSaveExpenseData(currentInput)
+		props.onSaveExpenseData(currentInput)  //данные которые пришли с фукнции saveExpenseDataHandler
 	}
 
 	return (
@@ -35,7 +35,7 @@ const ExpenseFrom = (props) => {
 					<input
 						name='title'
 						type='text'
-						onChange={inputChangeHandler} //берет
+						onChange={inputChangeHandler} //сработает когда мы нажмем клавишу
 						value={title} //высвечивает
 					/>
 				</div>
